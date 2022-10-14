@@ -3,41 +3,38 @@ package org.yellowhatpro.githubpro_compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
+import org.yellowhatpro.githubpro_compose.presentation.GithubProComposeNavigation
+import org.yellowhatpro.githubpro_compose.presentation.GithubProComposeViewModel
+import org.yellowhatpro.githubpro_compose.presentation.components.BottomNavigationBar
 import org.yellowhatpro.githubpro_compose.ui.theme.GithubProComposeTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
+            val viewModel = hiltViewModel<GithubProComposeViewModel>()
             GithubProComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                Scaffold(
+                    bottomBar = {
+                        BottomNavigationBar(
+                            navController
+                        )
+                    }
                 ) {
-                    Greeting("Android")
+                    GithubProComposeNavigation(
+                        navHostController = navController,
+                        viewModel = viewModel
+                    )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    GithubProComposeTheme {
-        Greeting("Android")
     }
 }
