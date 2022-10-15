@@ -1,11 +1,17 @@
 package org.yellowhatpro.githubpro_compose.data.di
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.yellowhatpro.githubpro_compose.data.MainRepository
 import org.yellowhatpro.githubpro_compose.data.MainRepositoryImpl
+import org.yellowhatpro.githubpro_compose.data.network.GithubApi
+import org.yellowhatpro.githubpro_compose.utils.Constants.BASE_URL
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -14,5 +20,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMainRepository() : MainRepository = MainRepositoryImpl()
+    fun provideMainRepository(githubApi: GithubApi, @ApplicationContext context: Context) : MainRepository = MainRepositoryImpl(githubApi , context )
+
+    @Provides
+    @Singleton
+    fun provideGithubApi() =
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(GithubApi::class.java)
 }

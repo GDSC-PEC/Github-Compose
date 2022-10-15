@@ -1,4 +1,4 @@
-package org.yellowhatpro.githubpro_compose.ui.theme
+package org.yellowhatpro.githubpro_compose.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package org.yellowhatpro.githubpro_compose.ui.theme
+package org.yellowhatpro.githubpro_compose.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
