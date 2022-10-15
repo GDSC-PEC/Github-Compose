@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.hilt.android.scopes.ActivityScoped
 import org.yellowhatpro.githubpro_compose.data.entities.GithubRepository
 import org.yellowhatpro.githubpro_compose.data.entities.GithubUser
+import org.yellowhatpro.githubpro_compose.data.entities.Issues
 import org.yellowhatpro.githubpro_compose.data.network.GithubApi
 import retrofit2.Response
 import javax.inject.Inject
@@ -18,4 +19,8 @@ class MainRepositoryImpl @Inject constructor(private val githubApi: GithubApi,
 
     override suspend fun getUserRepositories(): Response<List<GithubRepository>> =
         githubApi.getUserRepositories(username)
+
+    override suspend fun getUserIssues(): Response<Issues> =
+        githubApi.getIssues(username)
+
 }

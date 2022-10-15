@@ -1,6 +1,7 @@
 package org.yellowhatpro.githubpro_compose.presentation.components
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CircleNotifications
 import androidx.compose.material.icons.rounded.Doorbell
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Person
@@ -21,7 +22,7 @@ fun BottomNavigationBar(
     navController: NavController) {
     val items = listOf(
         Home,
-        Notification,
+        Issues,
         Profile
     )
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -50,6 +51,6 @@ sealed class NavigationItem(var route: String,
     var icon: ImageVector,
     var title : String){
     object  Home: NavigationItem("home", Icons.Rounded.Home,"Home" )
-    object Notification : NavigationItem("notifications", Icons.Rounded.Doorbell, "Notifications")
+    object Issues : NavigationItem("issues", Icons.Rounded.CircleNotifications, "Issues")
     object Profile : NavigationItem("profile", Icons.Rounded.Person, "Profile")
 }

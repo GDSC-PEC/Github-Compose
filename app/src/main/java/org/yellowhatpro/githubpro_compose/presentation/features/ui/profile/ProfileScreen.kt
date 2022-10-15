@@ -56,9 +56,11 @@ fun ProfileScreen(viewModel: GithubProComposeViewModel) {
                 }
                 Column(modifier = Modifier.padding(top =10.dp )) {
                     Text(text = userDetails.value.bio?:"")
-                    Row {
-                        Icon(imageVector = Icons.Rounded.Link, contentDescription = "")
-                        Text(text = userDetails.value.blog ?: "", fontWeight = FontWeight.Bold)
+                    if (!userDetails.value.blog.isNullOrEmpty()){
+                        Row {
+                            Icon(imageVector = Icons.Rounded.Link, contentDescription = "")
+                            Text(text = userDetails.value.blog ?: "", fontWeight = FontWeight.Bold)
+                        }
                     }
                     Row {
                         Icon(imageVector = Icons.Outlined.Person, contentDescription = "")

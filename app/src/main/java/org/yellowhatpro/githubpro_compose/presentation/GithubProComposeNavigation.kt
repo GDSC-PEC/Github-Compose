@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import org.yellowhatpro.githubpro_compose.presentation.components.NavigationItem
 import org.yellowhatpro.githubpro_compose.presentation.features.ui.GithubProComposeViewModel
 import org.yellowhatpro.githubpro_compose.presentation.features.ui.home.HomeScreen
-import org.yellowhatpro.githubpro_compose.presentation.features.ui.notifications.NotificationsScreen
+import org.yellowhatpro.githubpro_compose.presentation.features.ui.issues.IssuesScreen
 import org.yellowhatpro.githubpro_compose.presentation.features.ui.profile.ProfileScreen
 
 
@@ -22,8 +22,8 @@ fun GithubProComposeNavigation(
         composable(route = NavigationItem.Home.route){
             HomeScreen(navHostController = navHostController, viewModel)
         }
-        composable(route = NavigationItem.Notification.route){
-            NotificationsScreen(viewModel)
+        composable(route = NavigationItem.Issues.route){
+            IssuesScreen(viewModel)
         }
         composable(route = NavigationItem.Profile.route){
             ProfileScreen(viewModel)

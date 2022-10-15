@@ -2,9 +2,11 @@ package org.yellowhatpro.githubpro_compose.data.network
 
 import org.yellowhatpro.githubpro_compose.data.entities.GithubRepository
 import org.yellowhatpro.githubpro_compose.data.entities.GithubUser
+import org.yellowhatpro.githubpro_compose.data.entities.Issues
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GithubApi {
     @GET("users/{username}")
@@ -18,4 +20,10 @@ interface GithubApi {
         @Path(value = "username", encoded = true)
         userName: String
     ) : Response<List<GithubRepository>>
+
+    @GET("search/issues")
+    suspend fun getIssues(
+        @Query("q")
+        query: String
+    ) : Response<Issues>
 }

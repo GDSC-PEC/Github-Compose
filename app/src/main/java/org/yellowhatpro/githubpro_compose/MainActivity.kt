@@ -43,7 +43,6 @@ class MainActivity : ComponentActivity() {
                 dialogState = false
             }
             val navController = rememberNavController()
-            val viewModel = hiltViewModel<GithubProComposeViewModel>()
             GithubProComposeTheme {
                 Scaffold(
                     bottomBar = {
@@ -83,6 +82,7 @@ class MainActivity : ComponentActivity() {
                             })
                     } else {
                         //Main Stuff
+                        val viewModel = hiltViewModel<GithubProComposeViewModel>()
                         GithubProComposeNavigation(
                             modifier = Modifier.padding(paddingValues),
                             navHostController = navController,
