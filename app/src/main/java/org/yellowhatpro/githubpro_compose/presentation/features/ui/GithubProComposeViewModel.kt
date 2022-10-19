@@ -1,6 +1,5 @@
 package org.yellowhatpro.githubpro_compose.presentation.features.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,6 +10,7 @@ import org.yellowhatpro.githubpro_compose.data.MainRepository
 import org.yellowhatpro.githubpro_compose.data.entities.GithubRepository
 import org.yellowhatpro.githubpro_compose.data.entities.GithubUser
 import org.yellowhatpro.githubpro_compose.data.entities.Issues
+import org.yellowhatpro.githubpro_compose.data.entities.TopicSearch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,9 +27,11 @@ class GithubProComposeViewModel @Inject constructor(
     private val _userDetails = MutableStateFlow(GithubUser())
     private val _userRepositories = MutableStateFlow(listOf(GithubRepository()))
     private val _userIssues = MutableStateFlow(Issues())
+    private val _topicSearchResults = MutableStateFlow(TopicSearch())
     val userDetails = _userDetails.asStateFlow()
     val userRepositories = _userRepositories.asStateFlow()
     val userIssues = _userIssues.asStateFlow()
+    val topicSearchResults = _topicSearchResults.asStateFlow()
 
     private fun getUserDetails() {
         viewModelScope.launch {
@@ -52,11 +54,18 @@ class GithubProComposeViewModel @Inject constructor(
     private fun getUserIssues() {
         viewModelScope.launch {
             val response = mainRepository.getUserIssues()
-            if(response.isSuccessful){
-                Log.d("Ashu", "getUserIssues: ${response.body()} ")
+            if (response.isSuccessful) {
                 _userIssues.value = response.body() ?: Issues()
             }
         }
     }
 
+    fun topicSearch(q: String){
+        viewModelScope.launch {
+            val response = mainRepository.topicSearch(q)
+            if (response.isSuccessful){
+                _topicSearchResults.value = response.body() ?: TopicSearch()
+            }
+        }
+    }
 }

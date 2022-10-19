@@ -2,7 +2,6 @@ package org.yellowhatpro.githubpro_compose.presentation.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CircleNotifications
-import androidx.compose.material.icons.rounded.Doorbell
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Icon

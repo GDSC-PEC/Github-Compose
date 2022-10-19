@@ -11,7 +11,6 @@ import org.yellowhatpro.githubpro_compose.presentation.features.ui.home.HomeScre
 import org.yellowhatpro.githubpro_compose.presentation.features.ui.issues.IssuesScreen
 import org.yellowhatpro.githubpro_compose.presentation.features.ui.profile.ProfileScreen
 
-
 @Composable
 fun GithubProComposeNavigation(
     modifier : Modifier = Modifier,
@@ -20,13 +19,15 @@ fun GithubProComposeNavigation(
 ) {
     NavHost(navController = navHostController, startDestination = NavigationItem.Home.route ){
         composable(route = NavigationItem.Home.route){
-            HomeScreen(navHostController = navHostController, viewModel)
+            HomeScreen(navHostController = navHostController,
+                viewModel,
+                modifier = modifier)
         }
         composable(route = NavigationItem.Issues.route){
-            IssuesScreen(viewModel)
+            IssuesScreen(viewModel, modifier = modifier)
         }
         composable(route = NavigationItem.Profile.route){
-            ProfileScreen(viewModel)
+            ProfileScreen(viewModel, modifier = modifier)
         }
     }
 }
