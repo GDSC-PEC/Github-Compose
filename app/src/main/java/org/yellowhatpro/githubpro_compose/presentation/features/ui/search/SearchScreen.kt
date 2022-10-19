@@ -46,7 +46,7 @@ fun SearchScreen(
     val topicSearchResults by viewModel.topicSearchResults.collectAsState()
     val results = topicSearchResults.items ?: listOf()
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         SearchView(state = searchTextState, viewModel = viewModel)
