@@ -51,6 +51,6 @@ sealed class NavigationItem(var route: String,
     var icon: ImageVector,
     var title : String){
     object  Search: NavigationItem("search", Icons.Rounded.Search,"Search" )
-    object Issues : NavigationItem("issues", Icons.Rounded.CircleNotifications, "Issues")
+    object Issues : NavigationItem("issues", Icons.Rounded.CircleNotifications, "User Issues")
     object Profile : NavigationItem("profile", Icons.Rounded.Person, "Profile")
 }
