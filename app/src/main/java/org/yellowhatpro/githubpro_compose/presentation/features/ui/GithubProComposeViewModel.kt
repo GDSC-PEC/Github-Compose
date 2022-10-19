@@ -10,6 +10,7 @@ import org.yellowhatpro.githubpro_compose.data.MainRepository
 import org.yellowhatpro.githubpro_compose.data.entities.GithubRepository
 import org.yellowhatpro.githubpro_compose.data.entities.GithubUser
 import org.yellowhatpro.githubpro_compose.data.entities.Issues
+import org.yellowhatpro.githubpro_compose.data.entities.Repository
 import org.yellowhatpro.githubpro_compose.data.entities.TopicSearch
 import javax.inject.Inject
 
@@ -28,10 +29,12 @@ class GithubProComposeViewModel @Inject constructor(
     private val _userRepositories = MutableStateFlow(listOf(GithubRepository()))
     private val _userIssues = MutableStateFlow(Issues())
     private val _topicSearchResults = MutableStateFlow(TopicSearch())
+    private val _currentRepositorySelected = MutableStateFlow(Repository())
     val userDetails = _userDetails.asStateFlow()
     val userRepositories = _userRepositories.asStateFlow()
     val userIssues = _userIssues.asStateFlow()
     val topicSearchResults = _topicSearchResults.asStateFlow()
+    val currentRepository = _currentRepositorySelected.asStateFlow()
 
     private fun getUserDetails() {
         viewModelScope.launch {
@@ -60,11 +63,20 @@ class GithubProComposeViewModel @Inject constructor(
         }
     }
 
-    fun topicSearch(q: String){
+    fun topicSearch(q: String) {
         viewModelScope.launch {
             val response = mainRepository.topicSearch(q)
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 _topicSearchResults.value = response.body() ?: TopicSearch()
+            }
+        }
+    }
+
+    fun repoSearch(name: String) {
+        viewModelScope.launch {
+            val response = mainRepository.repositorySearch(name)
+            if (response.isSuccessful) {
+                _currentRepositorySelected.value = response.body() ?: Repository()
             }
         }
     }

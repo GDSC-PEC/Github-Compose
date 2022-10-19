@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CircleNotifications
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Person
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -20,7 +21,7 @@ import org.yellowhatpro.githubpro_compose.presentation.components.NavigationItem
 fun BottomNavigationBar(
     navController: NavController) {
     val items = listOf(
-        Home,
+        Search,
         Issues,
         Profile
     )
@@ -49,7 +50,7 @@ fun BottomNavigationBar(
 sealed class NavigationItem(var route: String,
     var icon: ImageVector,
     var title : String){
-    object  Home: NavigationItem("home", Icons.Rounded.Home,"Home" )
+    object  Search: NavigationItem("search", Icons.Rounded.Search,"Search" )
     object Issues : NavigationItem("issues", Icons.Rounded.CircleNotifications, "Issues")
     object Profile : NavigationItem("profile", Icons.Rounded.Person, "Profile")
 }

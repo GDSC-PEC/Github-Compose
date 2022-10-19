@@ -3,6 +3,7 @@ package org.yellowhatpro.githubpro_compose.data.network
 import org.yellowhatpro.githubpro_compose.data.entities.GithubRepository
 import org.yellowhatpro.githubpro_compose.data.entities.GithubUser
 import org.yellowhatpro.githubpro_compose.data.entities.Issues
+import org.yellowhatpro.githubpro_compose.data.entities.Repository
 import org.yellowhatpro.githubpro_compose.data.entities.TopicSearch
 import org.yellowhatpro.githubpro_compose.utils.Constants.BEARERTOKEN
 import retrofit2.Response
@@ -18,24 +19,30 @@ interface GithubApi {
         @Path(value = "username", encoded = true)
         userName: String,
         @Header("Authorization")
-        bearerToken: String=BEARERTOKEN,
-    ) : Response<GithubUser>
+        bearerToken: String = BEARERTOKEN,
+    ): Response<GithubUser>
 
     @GET("users/{username}/repos")
     suspend fun getUserRepositories(
         @Path(value = "username", encoded = true)
         userName: String
-    ) : Response<List<GithubRepository>>
+    ): Response<List<GithubRepository>>
 
     @GET("search/issues")
     suspend fun getIssues(
         @Query("q")
         query: String
-    ) : Response<Issues>
+    ): Response<Issues>
 
     @GET("search/topics")
     suspend fun getSearchTopicResults(
         @Query("q")
         query: String
-    ) : Response<TopicSearch>
+    ): Response<TopicSearch>
+
+    @GET("repos/{repository}")
+    suspend fun getRepoByName(
+        @Path(value = "repository", encoded = true)
+        name: String
+    ): Response<Repository>
 }

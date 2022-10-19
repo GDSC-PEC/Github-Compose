@@ -58,13 +58,6 @@ dependencies {
     implementation 'androidx.compose.material3:material3:1.0.0-rc01'
     implementation 'io.coil-kt:coil-compose:2.2.2'
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
-    //Room
-    implementation "androidx.room:room-runtime:2.4.3"
-    kapt "androidx.room:room-compiler:2.4.3"
-    implementation "androidx.room:room-ktx:2.4.3"
-
-    //Paging
-    implementation "androidx.paging:paging-compose:1.0.0-alpha16"
 
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
@@ -75,6 +68,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7'
 
+    //Lottie
+    implementation 'com.airbnb.android:lottie-compose:5.2.0'
 
     //Dagger Hilt
     implementation "com.google.dagger:hilt-android:2.44"
